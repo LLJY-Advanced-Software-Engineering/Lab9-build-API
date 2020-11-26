@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Lab 9</title>
+		<link href="css/styles.css" rel="stylesheet">
+		    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+		    <script
+		      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD7oiML4rWIGo3SAmnRJVga6j_5VL1iFM&callback=initMap&libraries=&v=weekly"
+		      defer
+		    ></script>
+			<script type="text/javascript">
+				let map;
+				
+				function initMap() {
+				  map = new google.maps.Map(document.getElementById("map"), {
+				    zoom: 10,
+				    center: { lat: 42.30504695260459, lng: -83.05744991534164 },
+				  });
+				  // NOTE: This uses cross-domain XHR, and may not work on older browsers.
+				  map.data.loadGeoJson(
+				    "https://opendata.arcgis.com/datasets/68853b605c844c6ebe041003b4c71b56_26.geojson"
+				  );
+				}
+				google.maps.event.addListener(map, 'click', function(event) {
+				  placeMarker(map, event.latLng);
+				});
+				
+				function placeMarker(map, location) {
+				  var marker = new google.maps.Marker({
+				    position: location,
+				    map: map
+				  });
+				  var infowindow = new google.maps.InfoWindow({
+				    content: 'Latitude: ' + location.lat() +
+				    '<br>Longitude: ' + location.lng()
+				  });
+				  infowindow.open(map,marker);
+				}
+			</script>
+			<style type="text/css">
+				#map{
+					width: 100%;
+					height: 600px;
+				}
+			</style>
+	</head>
+	<body class="img">
+<header>
+  <b><p style="text-align: center; font-family: "courier new";font-size: small;">Building on APIs for Fun</p></b>
+</header> 
+	
+<div class="mainContent">
+  <div class="ulist">
+    <section> <a href="weather.html" > <img src="img/weather.jpg"></a>
+      <ul>
+        <h2><a href="weather.html" >Weather</a></h2>
+        <p>It shows some cities weather from Canada government.</p>
+      </ul>
+    </section> 
+    <section> <a href="map.html" ><img src="img/Googlemap.png"></a>
+      <ul>
+        <h2><a href="map.html" >Google Map</a></h2>
+        <p>It will show all hosipitals on the map of Ontario</p>
+      </ul>
+    </section> 
+    <section> <a href="https://github.com/LLJY-Supply-Chain-of-PPE/Lab9-build-API/wiki" target="  _blank"><img src=img/aboutus.jpg></a>
+      <ul>
+        <h2><a href="https://github.com/LLJY-Supply-Chain-of-PPE/Lab9-build-API/wiki" target="  _blank">More</a></h2>
+        <p>About us</p>
+      </ul>
+    </section>
+  </div>
+</div>
+		
+		<div id="map">
+			
+		</div>
+		
+		
+		<footer>
+		  <div class="footavatar">
+		    <img src="images/nina.jpg" class="footphoto">
+		    <ul class="footinfo">
+		      <p class="fname"><a href="index.html" >Lab 9</a>  </p>
+		      <p class="finfo">Team 7</p>
+		      <p>University of Windsor</p></ul>
+		  </div>
+		  <div class="Copyright">
+		   
+		    <p>Design by Team 7</p>
+		  </div>
+		</footer>
+	</body>
+</html>
